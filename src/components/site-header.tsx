@@ -13,8 +13,8 @@ export default function SiteHeader() {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+    <header className="absolute inset-x-0 top-0 z-50">
+      <div className="flex w-full items-center justify-between px-6 py-4 lg:px-10">
         <Link
           href="/"
           className="font-display text-xl tracking-wide uppercase text-foreground"
@@ -23,40 +23,15 @@ export default function SiteHeader() {
           {siteConfig.name}
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={`text-sm font-medium transition-colors hover:text-foreground ${
-                  active ? "text-accent" : "text-muted"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden lg:block">
-          <BookAppointmentButton size="sm" />
-        </div>
-
         <button
           type="button"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex flex-col gap-1.5 p-2 lg:hidden"
+          className="flex flex-col gap-1.5 p-2"
         >
           <span
             className={`h-0.5 w-6 bg-foreground transition-transform ${open ? "translate-y-2 rotate-45" : ""}`}
-          />
-          <span
-            className={`h-0.5 w-6 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`}
           />
           <span
             className={`h-0.5 w-6 bg-foreground transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`}
@@ -65,7 +40,7 @@ export default function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-border px-6 py-4 lg:hidden">
+        <nav className="flex flex-col gap-1 border-t border-border bg-background px-6 py-4">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (

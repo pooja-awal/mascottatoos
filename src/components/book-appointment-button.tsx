@@ -22,7 +22,7 @@ export default function BookAppointmentButton({
     <Link
       href="/contact"
       onClick={onClick}
-      className={`btn-sweep btn-sweep-outline inline-flex items-center justify-center border-2 border-foreground bg-transparent font-semibold text-foreground transition-colors duration-300 ${sizeClasses[size]} ${className}`}
+      className={`btn-sweep btn-sweep-outline inline-flex items-center justify-center border border-foreground bg-transparent font-semibold text-foreground transition-colors duration-300 ${sizeClasses[size]} ${className}`}
     >
       Book Appointment
     </Link>
