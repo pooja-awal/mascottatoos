@@ -5,22 +5,28 @@ import SectionEyebrow from "@/components/section-eyebrow";
 import { faqs } from "@/data/site";
 
 const tabs = [
+  { key: "all" as const, label: "All" },
   { key: "tattoo" as const, label: "Tattoo" },
   { key: "piercing" as const, label: "Piercing" },
 ];
 
 export default function FAQ() {
-  const [tab, setTab] = useState<"tattoo" | "piercing">("tattoo");
+  const [tab, setTab] = useState<"all" | "tattoo" | "piercing">("all");
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const items = useMemo(() => faqs.filter((f) => f.category === tab), [tab]);
+  const items = useMemo(
+    () => (tab === "all" ? faqs : faqs.filter((f) => f.category === tab)),
+    [tab],
+  );
 
   return (
-    <section className="mx-auto max-w-3xl px-6 py-24 lg:px-8">
+    <section className="mx-auto max-w-4xl px-6 py-24 lg:px-8">
       <div className="text-center">
         <SectionEyebrow>FAQ</SectionEyebrow>
-        <h2 className="font-display mt-3 text-3xl uppercase sm:text-4xl">
-          Frequently Asked Questions
+        <h2 className="font-display mt-6 text-5xl uppercase sm:text-6xl">
+          Frequently
+          <br />
+          Asked Questions
         </h2>
       </div>
 
@@ -33,10 +39,10 @@ export default function FAQ() {
               setTab(t.key);
               setOpenIndex(0);
             }}
-            className={`btn-sweep px-6 py-2 text-sm font-semibold transition-colors duration-300 ${
+            className={`btn-sweep px-6 py-2 text-sm font-semibold uppercase transition-colors duration-300 ${
               tab === t.key
-                ? "btn-sweep-solid bg-accent text-accent-foreground"
-                : "btn-sweep-accent border border-border text-muted"
+                ? "btn-sweep-invert bg-white text-background"
+                : "btn-sweep-accent border border-border text-foreground"
             }`}
           >
             {t.label}
@@ -53,20 +59,25 @@ export default function FAQ() {
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                className="flex w-full items-center gap-6 py-6 text-left"
               >
-                <span className="text-sm font-semibold sm:text-base">
+                <span className="font-display shrink-0 text-xs text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="font-display flex-1 text-lg uppercase sm:text-xl">
                   {item.q}
                 </span>
                 <span
-                  className={`shrink-0 text-xl text-accent transition-transform ${isOpen ? "rotate-45" : ""}`}
+                  className={`shrink-0 text-2xl transition-transform ${isOpen ? "rotate-45" : ""}`}
                   aria-hidden
                 >
                   +
                 </span>
               </button>
               {isOpen && (
-                <p className="pb-5 text-sm leading-6 text-muted">{item.a}</p>
+                <p className="pb-6 pl-12 text-sm leading-6 text-muted">
+                  {item.a}
+                </p>
               )}
             </div>
           );

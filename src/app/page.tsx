@@ -6,6 +6,7 @@ import Artists from "@/components/artists";
 import Testimonials from "@/components/testimonials";
 import MarqueeBand from "@/components/marquee-band";
 import GalleryTeaser from "@/components/gallery-teaser";
+import FAQ from "@/components/faq";
 import FinalCta from "@/components/final-cta";
 
 export default function Home() {
@@ -17,8 +18,15 @@ export default function Home() {
       <PromoBanner />
       <Artists />
       <Testimonials />
-      <MarqueeBand />
+      <div
+        className="relative my-10"
+        style={{ height: "clamp(6rem, 16vw, 14rem)" }}
+      >
+        <MarqueeBand />
+        <MarqueeBand reverse />
+      </div>
       <GalleryTeaser />
+      <FAQ />
       <FinalCta />
     </>
   );
