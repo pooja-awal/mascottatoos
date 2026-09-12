@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { imgUrl, navLinks, siteConfig } from "@/data/site";
+import { footerBannerImage, navLinks, siteConfig, unsplashUrl } from "@/data/site";
 
 export default function SiteFooter() {
   return (
@@ -87,9 +87,9 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 overflow-hidden rounded-2xl">
+        <div className="mt-14 overflow-hidden border border-border">
           <img
-            src={imgUrl("mascot-footer-banner", 1600, 360)}
+            src={unsplashUrl(footerBannerImage, 1600, 360)}
             alt="Detail of a healed tattoo"
             className="h-40 w-full object-cover sm:h-56"
             loading="lazy"

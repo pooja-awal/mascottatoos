@@ -1,5 +1,7 @@
-// Central content for the Mascottatoos site. Swap the `img` seeds for real
-// photography and edit copy here — components just render this data.
+// Central content for the Mascottatoos site. Photos are free-to-use Unsplash
+// images (Unsplash License — free for commercial use, no attribution
+// required) referenced by photo id. Swap any `photo` value for real studio
+// photography whenever it's ready; components just render this data.
 
 export const siteConfig = {
   name: "Mascottatoos",
@@ -14,58 +16,82 @@ export const siteConfig = {
 };
 
 export const navLinks = [
-  { label: "About", href: "/#about" },
-  { label: "Services", href: "/#services" },
-  { label: "Artists", href: "/#artists" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Artists", href: "/artists" },
   { label: "Gallery", href: "/gallery" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "/#booking" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
 ];
 
-export function imgUrl(seed: string, w: number, h: number) {
-  return `https://picsum.photos/seed/${seed}/${w}/${h}`;
+/** Build a sized, cropped Unsplash CDN url from a bare photo id. */
+export function unsplashUrl(photo: string, w: number, h: number) {
+  return `https://images.unsplash.com/photo-${photo}?q=80&w=${w}&h=${h}&auto=format&fit=crop`;
 }
+
+// One-off section images used directly in a single component.
+export const heroImage = "1552627019-947c3789ffb5";
+export const aboutImage = "1542744383-8c330d91f4b1";
+export const promoImage = "1601848714157-d845bb5c11ff";
+export const bookingImage = "1607281503082-f01fedd97a5b";
+
+// Rotating showcase card (About section) — photos auto-cycle on an interval.
+export const showcasePhotos = [
+  "1738913920284-f629b6e40611",
+  "1713730633807-6b24c383ad76",
+  "1581518570052-e08e4d85cd10",
+  "1740239986116-6c04b956f9d3",
+];
+export const showcaseAvatars = [
+  "1513078094721-e7b6e0394a6a",
+  "1565058379802-bbe93b2f703a",
+  "1564426622559-5af68da63b96",
+  "1643513456892-437e82e06f4a",
+  "1712432321375-226f466fff85",
+];
+export const showcaseStat = { value: "1.4K", label: "Satisfied Clients" };
+export const footerBannerImage = "1516008684536-605574d804ce";
 
 export const services = [
   {
     title: "Custom Tattoo",
     desc: "One-of-a-kind designs built around your idea, sketched and refined with you before the needle ever touches skin.",
-    seed: "mascot-custom",
+    photo: "1568515045052-f9a854d70bfd",
   },
   {
     title: "Black & Grey Tattoo",
     desc: "Smooth shading and deep contrast for portraits, realism, and moody linework that ages beautifully.",
-    seed: "mascot-blackgrey",
+    photo: "1570168983832-8989dae1522e",
   },
   {
     title: "Fine Line Tattoo",
     desc: "Delicate, precise linework for minimalist pieces, script, and detailed micro-tattoos.",
-    seed: "mascot-fineline",
+    photo: "1542727365-19732a80dcfd",
   },
   {
     title: "Cover-Up Tattoo",
     desc: "Reworking old or unwanted tattoos into pieces you'll actually want to show off.",
-    seed: "mascot-coverup",
+    photo: "1704345911745-f2524e8b76f6",
   },
   {
-    title: "Tattoo Removal (Laser)",
-    desc: "Safe, gradual laser removal and fading sessions for old ink, prepping skin for a fresh start.",
-    seed: "mascot-removal",
+    title: "Traditional Tattoo",
+    desc: "Bold outlines, saturated color, and time-tested American traditional imagery built to hold up for decades.",
+    photo: "1543244128-30d70d41e2a9",
   },
   {
     title: "Piercing",
     desc: "Ear, facial, and body piercing with implant-grade jewelry in a sterile, single-use setup.",
-    seed: "mascot-piercing",
+    photo: "1603323226047-df6de54ddc13",
   },
 ];
 
 export const artists = [
-  { name: "Alex", role: "Realism & Portraits", seed: "mascot-artist-alex" },
-  { name: "Marcus", role: "Black & Grey", seed: "mascot-artist-marcus" },
-  { name: "Liam", role: "Traditional", seed: "mascot-artist-liam" },
-  { name: "Jade", role: "Fine Line & Script", seed: "mascot-artist-jade" },
-  { name: "Ethan", role: "Neo-Traditional", seed: "mascot-artist-ethan" },
-  { name: "Sofia", role: "Color & Illustrative", seed: "mascot-artist-sofia" },
+  { name: "Alex", role: "Realism & Portraits", photo: "1513078094721-e7b6e0394a6a" },
+  { name: "Marcus", role: "Black & Grey", photo: "1565058379802-bbe93b2f703a" },
+  { name: "Liam", role: "Traditional", photo: "1564426622559-5af68da63b96" },
+  { name: "Jade", role: "Fine Line & Script", photo: "1643513456892-437e82e06f4a" },
+  { name: "Ethan", role: "Neo-Traditional", photo: "1712432321375-226f466fff85" },
+  { name: "Sofia", role: "Color & Illustrative", photo: "1597852075234-fd721ac361d3" },
 ];
 
 export const testimonials = [
@@ -74,42 +100,42 @@ export const testimonials = [
     quote:
       "I was a bit nervous but the whole team made me feel comfortable. First tattoo done and it's exactly what I wanted.",
     rating: 5,
-    seed: "mascot-testi-1",
+    photo: "1531951829979-d658d7e5e8a6",
   },
   {
     name: "Devon Miller",
     quote:
       "Super professional, the studio is spotless, and the artist nailed the design brief perfectly. Highly recommend.",
     rating: 5,
-    seed: "mascot-testi-2",
+    photo: "1562379825-415aea84ebcf",
   },
   {
     name: "Emily Carter",
     quote:
       "My cover-up came out way better than I expected. You genuinely can't tell there was ever anything underneath.",
     rating: 5,
-    seed: "mascot-testi-3",
+    photo: "1562962230-16e4623d36e6",
   },
   {
     name: "Sofia Ramirez",
     quote:
       "Booked a walk-in slot for a small piece and left with something I'll be showing off for years. Great energy in there.",
     rating: 5,
-    seed: "mascot-testi-4",
+    photo: "1604374376934-2df6fad6519b",
   },
   {
     name: "Chris Bennett",
     quote:
       "Absolutely worth the wait for an appointment. Detailed consultation, honest advice, and flawless linework.",
     rating: 5,
-    seed: "mascot-testi-5",
+    photo: "1547754145-ef9ff306e3f3",
   },
   {
     name: "Olivia Bennett",
     quote:
       "Second piece done here — consistent quality every time and they always take real care during aftercare advice.",
     rating: 5,
-    seed: "mascot-testi-6",
+    photo: "1585745422697-1b42b98aac14",
   },
 ];
 
@@ -120,7 +146,7 @@ export const marqueeItems = [
   "Black & Grey",
   "Realism",
   "Aftercare",
-  "Tattoo Removal",
+  "Traditional",
   "Book Now",
 ];
 
@@ -176,11 +202,30 @@ export const galleryCategories = [
   "Piercing",
 ] as const;
 
-export const galleryImages = Array.from({ length: 24 }, (_, i) => {
-  const categories = galleryCategories.slice(1);
-  const category = categories[i % categories.length];
-  return {
-    seed: `mascot-gallery-${i + 1}`,
-    category,
-  };
-});
+// Curated real photos, hand-assigned to the category they actually depict.
+export const galleryImages = [
+  { photo: "1552627019-947c3789ffb5", category: "Black & Grey" },
+  { photo: "1565058379802-bbe93b2f703a", category: "Black & Grey" },
+  { photo: "1564426622559-5af68da63b96", category: "Black & Grey" },
+  { photo: "1570168983832-8989dae1522e", category: "Black & Grey" },
+  { photo: "1567601262588-37537a1f6cc7", category: "Black & Grey" },
+  { photo: "1601848714157-d845bb5c11ff", category: "Color" },
+  { photo: "1503470439160-b5796c5ec510", category: "Color" },
+  { photo: "1547754145-ef9ff306e3f3", category: "Color" },
+  { photo: "1585745422697-1b42b98aac14", category: "Color" },
+  { photo: "1562379825-415aea84ebcf", category: "Color" },
+  { photo: "1542727365-19732a80dcfd", category: "Fine Line" },
+  { photo: "1562962230-16e4623d36e6", category: "Fine Line" },
+  { photo: "1531951829979-d658d7e5e8a6", category: "Fine Line" },
+  { photo: "1627960630431-270d04164a22", category: "Fine Line" },
+  { photo: "1651692883249-ed36b3523419", category: "Fine Line" },
+  { photo: "1479767574301-a01c78234a0c", category: "Traditional" },
+  { photo: "1543244128-30d70d41e2a9", category: "Traditional" },
+  { photo: "1482328177731-274399da39f0", category: "Traditional" },
+  { photo: "1578338527869-a196eec7f13d", category: "Traditional" },
+  { photo: "1604374376934-2df6fad6519b", category: "Traditional" },
+  { photo: "1603323226047-df6de54ddc13", category: "Piercing" },
+  { photo: "1629719256608-51317205d994", category: "Piercing" },
+  { photo: "1702034802346-1837090e3b30", category: "Piercing" },
+  { photo: "1602722872368-0cfc00f748ff", category: "Piercing" },
+] as const;

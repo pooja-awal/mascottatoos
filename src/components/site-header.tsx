@@ -1,11 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import BookAppointmentButton from "@/components/book-appointment-button";
 import { navLinks, siteConfig } from "@/data/site";
 
 export default function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  const isActive = (href: string) => pathname === href;
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur">
@@ -19,24 +24,25 @@ export default function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`text-sm font-medium transition-colors hover:text-foreground ${
+                  active ? "text-accent" : "text-muted"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden lg:block">
-          <Link
-            href="/#booking"
-            className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
-          >
-            Book Appointment
-          </Link>
+          <BookAppointmentButton size="sm" />
         </div>
 
         <button
@@ -60,23 +66,27 @@ export default function SiteHeader() {
 
       {open && (
         <nav className="flex flex-col gap-1 border-t border-border px-6 py-4 lg:hidden">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2.5 text-sm font-medium text-muted hover:bg-surface hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/#booking"
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                aria-current={active ? "page" : undefined}
+                className={`rounded-md px-2 py-2.5 text-sm font-medium hover:bg-surface hover:text-foreground ${
+                  active ? "bg-surface text-accent" : "text-muted"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <BookAppointmentButton
+            size="sm"
+            className="mt-2 w-fit"
             onClick={() => setOpen(false)}
-            className="mt-2 inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground"
-          >
-            Book Appointment
-          </Link>
+          />
         </nav>
       )}
     </header>

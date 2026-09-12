@@ -38,3 +38,57 @@ body {
   -webkit-text-stroke: 1px var(--foreground);
   color: transparent;
 }
+
+/* Square corners site-wide — overrides every rounded-* utility. */
+* {
+  border-radius: 0 !important;
+}
+
+/*
+ * Shared hover behavior for every button/button-styled link on the site:
+ * a solid fill sweeps in from the left edge on hover instead of an instant
+ * color change. Combine `.btn-sweep` with one fill variant below.
+ */
+.btn-sweep {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.btn-sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease-out;
+}
+.btn-sweep:hover::before {
+  transform: scaleX(1);
+}
+
+/* Outline buttons (transparent bg) — fills white, text flips dark. */
+.btn-sweep-outline::before {
+  background: var(--foreground);
+}
+.btn-sweep-outline:hover {
+  color: var(--background);
+}
+
+/* Outline/toggle buttons that fill with the accent color on hover. */
+.btn-sweep-accent::before {
+  background: var(--accent);
+}
+.btn-sweep-accent:hover {
+  color: var(--accent-foreground);
+}
+
+/* Already-solid accent buttons — a light shine sweeps across on hover. */
+.btn-sweep-solid::before {
+  background: color-mix(in srgb, white 20%, transparent);
+}
+
+/* Solid light/white buttons — a dark tint sweeps across on hover. */
+.btn-sweep-invert::before {
+  background: color-mix(in srgb, black 12%, transparent);
+}

@@ -1,11 +1,11 @@
-import Link from "next/link";
-import { imgUrl } from "@/data/site";
+import BookAppointmentButton from "@/components/book-appointment-button";
+import { promoImage, unsplashUrl } from "@/data/site";
 
 export default function PromoBanner() {
   return (
     <section className="relative overflow-hidden">
       <img
-        src={imgUrl("mascot-promo", 1920, 700)}
+        src={unsplashUrl(promoImage, 1920, 700)}
         alt="Close-up tattoo detail"
         className="absolute inset-0 h-full w-full object-cover grayscale"
       />
@@ -22,12 +22,7 @@ export default function PromoBanner() {
           Start your ink journey with us. Book your first session this month
           and enjoy an exclusive discount on custom tattoo work.
         </p>
-        <Link
-          href="/#booking"
-          className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
-        >
-          Book Appointment
-        </Link>
+        <BookAppointmentButton className="mt-8" />
       </div>
     </section>
   );

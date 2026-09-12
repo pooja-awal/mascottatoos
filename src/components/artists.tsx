@@ -1,8 +1,8 @@
-import { artists, imgUrl } from "@/data/site";
+import { artists, unsplashUrl } from "@/data/site";
 
 export default function Artists() {
   return (
-    <section id="artists" className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+    <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
       <div className="text-center">
         <p className="text-sm font-semibold tracking-widest text-accent uppercase">
           The Team
@@ -19,9 +19,9 @@ export default function Artists() {
       <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
         {artists.map((artist) => (
           <div key={artist.name} className="group">
-            <div className="overflow-hidden rounded-xl">
+            <div className="overflow-hidden border border-border">
               <img
-                src={imgUrl(artist.seed, 400, 500)}
+                src={unsplashUrl(artist.photo, 400, 500)}
                 alt={artist.name}
                 className="h-56 w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 sm:h-64"
                 loading="lazy"

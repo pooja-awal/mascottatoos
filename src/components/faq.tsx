@@ -15,7 +15,7 @@ export default function FAQ() {
   const items = useMemo(() => faqs.filter((f) => f.category === tab), [tab]);
 
   return (
-    <section id="faq" className="mx-auto max-w-3xl px-6 py-24 lg:px-8">
+    <section className="mx-auto max-w-3xl px-6 py-24 lg:px-8">
       <div className="text-center">
         <p className="text-sm font-semibold tracking-widest text-accent uppercase">
           FAQ
@@ -34,10 +34,10 @@ export default function FAQ() {
               setTab(t.key);
               setOpenIndex(0);
             }}
-            className={`rounded-full px-6 py-2 text-sm font-semibold transition-colors ${
+            className={`btn-sweep px-6 py-2 text-sm font-semibold transition-colors duration-300 ${
               tab === t.key
-                ? "bg-accent text-accent-foreground"
-                : "border border-border text-muted hover:text-foreground"
+                ? "btn-sweep-solid bg-accent text-accent-foreground"
+                : "btn-sweep-accent border border-border text-muted"
             }`}
           >
             {t.label}

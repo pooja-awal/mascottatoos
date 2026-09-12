@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { imgUrl, siteConfig } from "@/data/site";
+import CornerMarks from "@/components/corner-marks";
+import { aboutImage, siteConfig, unsplashUrl } from "@/data/site";
 
 const stats = [
   { value: "12+", label: "Years Inking" },
@@ -9,7 +10,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+    <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div>
           <p className="text-sm font-semibold tracking-widest text-accent uppercase">
@@ -45,27 +46,22 @@ export default function About() {
           </div>
 
           <Link
-            href="/#services"
-            className="mt-10 inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-accent hover:text-accent"
+            href="/services"
+            className="btn-sweep btn-sweep-accent mt-10 inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors duration-300"
           >
             Read More
           </Link>
         </div>
 
         <div className="relative">
-          <div className="overflow-hidden rounded-2xl">
+          <CornerMarks />
+          <div className="overflow-hidden border border-border">
             <img
-              src={imgUrl("mascot-about-main", 900, 1000)}
+              src={unsplashUrl(aboutImage, 900, 1000)}
               alt="Inside the Mascottatoos studio"
               className="h-[420px] w-full object-cover sm:h-[520px]"
               loading="lazy"
             />
-          </div>
-          <div className="absolute -bottom-8 -left-6 hidden w-48 rounded-xl border border-border bg-surface p-4 shadow-xl sm:block">
-            <p className="font-display text-3xl text-accent">15%</p>
-            <p className="mt-1 text-xs leading-5 text-muted">
-              Off your first tattoo when you book online this month.
-            </p>
           </div>
         </div>
       </div>

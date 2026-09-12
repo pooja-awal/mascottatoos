@@ -5,9 +5,8 @@ import PromoBanner from "@/components/promo-banner";
 import Artists from "@/components/artists";
 import Testimonials from "@/components/testimonials";
 import MarqueeBand from "@/components/marquee-band";
-import FAQ from "@/components/faq";
 import GalleryTeaser from "@/components/gallery-teaser";
-import BookingSection from "@/components/booking-section";
+import FinalCta from "@/components/final-cta";
 
 export default function Home() {
   return (
@@ -19,9 +18,8 @@ export default function Home() {
       <Artists />
       <Testimonials />
       <MarqueeBand />
-      <FAQ />
       <GalleryTeaser />
-      <BookingSection />
+      <FinalCta />
     </>
   );
 }

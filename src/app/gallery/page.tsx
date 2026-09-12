@@ -14,7 +14,7 @@ export default function GalleryPage() {
         <p className="text-sm font-semibold tracking-widest text-accent uppercase">
           Full Gallery
         </p>
-        <h1 className="font-display mt-3 text-4xl uppercase sm:text-5xl">
+        <h1 className="font-display mt-3 text-6xl uppercase sm:text-7xl lg:text-8xl">
           Stories on Skin
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-muted">
