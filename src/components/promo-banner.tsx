@@ -1,4 +1,5 @@
 import BookAppointmentButton from "@/components/book-appointment-button";
+import SectionEyebrow from "@/components/section-eyebrow";
 import { promoImage, unsplashUrl } from "@/data/site";
 
 export default function PromoBanner() {
@@ -12,15 +13,14 @@ export default function PromoBanner() {
       <div className="absolute inset-0 bg-black/75" />
 
       <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 py-24 text-center lg:px-8">
-        <p className="text-sm font-semibold tracking-widest text-accent uppercase">
-          Limited Time Offer
-        </p>
+        <SectionEyebrow>Free Consultation</SectionEyebrow>
         <h2 className="font-display mt-3 text-3xl uppercase text-white sm:text-5xl">
-          Get 15% Off Your First Tattoo
+          Book a Free Consultation
         </h2>
         <p className="mt-5 max-w-xl text-base leading-7 text-white/70">
-          Start your ink journey with us. Book your first session this month
-          and enjoy an exclusive discount on custom tattoo work.
+          Not sure where to start? Sit down with one of our artists to talk
+          through your idea, placement, and design, no obligation, before you
+          commit to anything.
         </p>
         <BookAppointmentButton className="mt-8" />
       </div>

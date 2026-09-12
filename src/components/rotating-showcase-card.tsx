@@ -16,7 +16,7 @@ export default function RotatingShowcaseCard() {
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % showcasePhotos.length);
-    }, 3500);
+    }, 500);
     return () => clearInterval(id);
   }, []);
 
@@ -34,7 +34,7 @@ export default function RotatingShowcaseCard() {
                 key={photo}
                 src={unsplashUrl(photo, 450, 560)}
                 alt="Recent tattoo work"
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-100 ease-in-out ${
                   i === index ? "opacity-100" : "opacity-0"
                 }`}
               />

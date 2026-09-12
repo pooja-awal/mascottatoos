@@ -2,23 +2,36 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import BookAppointmentButton from "@/components/book-appointment-button";
-import { navLinks, siteConfig } from "@/data/site";
+import { useEffect, useState } from "react";
+import { aboutImage, navLinks, openingHours, siteConfig, unsplashUrl } from "@/data/site";
+
+const menuLinks = [{ label: "Home", href: "/" }, ...navLinks];
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (open) setMounted(true);
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   const isActive = (href: string) => pathname === href;
+  const close = () => setOpen(false);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
-      <div className="flex w-full items-center justify-between px-6 py-4 lg:px-10">
+    <header
+      className={`inset-x-0 top-0 z-50 ${open ? "fixed" : "absolute"}`}
+    >
+      <div className="relative z-50 flex w-full items-center justify-between px-6 py-4 lg:px-10">
         <Link
           href="/"
           className="font-display text-xl tracking-wide uppercase text-foreground"
-          onClick={() => setOpen(false)}
+          onClick={close}
         >
           {siteConfig.name}
         </Link>
@@ -28,7 +41,7 @@ export default function SiteHeader() {
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex flex-col gap-1.5 p-2"
+          className="relative z-10 flex flex-col gap-1.5 p-2"
         >
           <span
             className={`h-0.5 w-6 bg-foreground transition-transform ${open ? "translate-y-2 rotate-45" : ""}`}
@@ -39,30 +52,146 @@ export default function SiteHeader() {
         </button>
       </div>
 
-      {open && (
-        <nav className="flex flex-col gap-1 border-t border-border bg-background px-6 py-4">
-          {navLinks.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                aria-current={active ? "page" : undefined}
-                className={`rounded-md px-2 py-2.5 text-sm font-medium hover:bg-surface hover:text-foreground ${
-                  active ? "bg-surface text-accent" : "text-muted"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-          <BookAppointmentButton
-            size="sm"
-            className="mt-2 w-fit"
-            onClick={() => setOpen(false)}
-          />
-        </nav>
+      {mounted && (
+        <div
+          className={`fixed inset-0 z-40 flex flex-col overflow-y-auto bg-background transition-all duration-500 ease-out ${
+            open
+              ? "opacity-100"
+              : "pointer-events-none -translate-y-4 opacity-0"
+          }`}
+        >
+          <div className="h-[72px] shrink-0 lg:h-[76px]" aria-hidden />
+          <div className="flex flex-1 flex-col justify-center gap-14 px-6 pb-16 lg:flex-row lg:items-center lg:gap-16 lg:px-10">
+          <div className="relative mx-auto w-full max-w-sm shrink-0 pb-16 lg:mx-0">
+            <div className="relative border border-border">
+              <span className="absolute top-0 left-0 z-10 -translate-x-1/2 -translate-y-1/2 text-3xl leading-none font-light text-foreground/70">
+                +
+              </span>
+              <span className="absolute top-0 right-0 z-10 translate-x-1/2 -translate-y-1/2 text-3xl leading-none font-light text-foreground/70">
+                +
+              </span>
+              <img
+                src={unsplashUrl(aboutImage, 700, 900)}
+                alt="Inside the studio"
+                className="h-[420px] w-full object-cover"
+              />
+            </div>
+
+            <div className="absolute bottom-0 left-0 w-[75%] border border-border bg-white p-6 text-background">
+              <span className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 text-3xl leading-none font-light text-foreground/70">
+                +
+              </span>
+              <span className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 text-3xl leading-none font-light text-foreground/70">
+                +
+              </span>
+              <h3 className="font-display text-lg tracking-wide uppercase">
+                Opening Hours
+              </h3>
+              <dl className="mt-4 space-y-1.5 text-sm">
+                {openingHours.map((row) => (
+                  <div key={row.day} className="flex gap-3">
+                    <dt className="w-10 font-semibold">
+                      {row.day.toUpperCase()}
+                    </dt>
+                    <span>:</span>
+                    <dd>{row.hours}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+
+          <nav className="flex flex-col">
+            {menuLinks.map((link, i) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={close}
+                  aria-current={active ? "page" : undefined}
+                  className={`btn-sweep btn-sweep-outline font-display inline-flex w-fit items-start px-2 text-5xl uppercase transition-colors duration-300 sm:text-6xl lg:text-7xl ${
+                    active ? "btn-sweep-active text-background" : "text-foreground"
+                  }`}
+                >
+                  {link.label}
+                  <sup className="mt-2 ml-1 text-sm tracking-wide">
+                    {String(i + 1).padStart(2, "0")}
+                  </sup>
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex shrink-0 flex-col gap-12 lg:ml-8">
+            <div>
+              <h3 className="font-display text-3xl tracking-wide uppercase sm:text-4xl">
+                Contact Us
+              </h3>
+              <p className="mt-6 text-xl font-semibold text-foreground/80 sm:text-2xl">
+                Phone :{" "}
+                <a href={`tel:${siteConfig.phone}`} className="text-foreground">
+                  {siteConfig.phone}
+                </a>
+              </p>
+              <p className="mt-3 text-xl font-semibold text-foreground/80 sm:text-2xl">
+                Email :{" "}
+                <a href={`mailto:${siteConfig.email}`} className="text-foreground">
+                  {siteConfig.email}
+                </a>
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-display text-3xl tracking-wide uppercase sm:text-4xl">
+                Find Us On
+              </h3>
+              <ul className="mt-6 space-y-3 text-xl font-semibold sm:text-2xl">
+                <li>
+                  <a
+                    href={siteConfig.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-foreground/80"
+                  >
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={siteConfig.facebook}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-foreground/80"
+                  >
+                    Facebook
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={siteConfig.googleMaps}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-foreground/80"
+                  >
+                    Google Maps
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={siteConfig.whatsapp}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-foreground/80"
+                  >
+                    WhatsApp
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          </div>
+        </div>
       )}
     </header>
   );

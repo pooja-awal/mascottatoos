@@ -13,6 +13,8 @@ export const siteConfig = {
   instagram: "https://instagram.com",
   facebook: "https://facebook.com",
   tiktok: "https://tiktok.com",
+  googleMaps: "https://maps.google.com/?q=123+Ink+Street,+New+York,+NY+10001",
+  whatsapp: "https://wa.me/19175550123",
 };
 
 export const navLinks = [
@@ -86,12 +88,30 @@ export const services = [
 ];
 
 export const artists = [
-  { name: "Alex", role: "Realism & Portraits", photo: "1513078094721-e7b6e0394a6a" },
-  { name: "Marcus", role: "Black & Grey", photo: "1565058379802-bbe93b2f703a" },
-  { name: "Liam", role: "Traditional", photo: "1564426622559-5af68da63b96" },
-  { name: "Jade", role: "Fine Line & Script", photo: "1643513456892-437e82e06f4a" },
-  { name: "Ethan", role: "Neo-Traditional", photo: "1712432321375-226f466fff85" },
-  { name: "Sofia", role: "Color & Illustrative", photo: "1597852075234-fd721ac361d3" },
+  {
+    name: "Alex",
+    role: "Realism & Portraits",
+    photo: "1513078094721-e7b6e0394a6a",
+    instagram: "@alex.ink",
+  },
+  {
+    name: "Marcus",
+    role: "Black & Grey",
+    photo: "1565058379802-bbe93b2f703a",
+    instagram: "@marcus.ink",
+  },
+  {
+    name: "Liam",
+    role: "Traditional",
+    photo: "1564426622559-5af68da63b96",
+    instagram: "@liam.ink",
+  },
+  {
+    name: "Jade",
+    role: "Fine Line & Script",
+    photo: "1643513456892-437e82e06f4a",
+    instagram: "@jade.ink",
+  },
 ];
 
 export const testimonials = [

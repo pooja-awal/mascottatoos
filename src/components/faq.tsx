@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import SectionEyebrow from "@/components/section-eyebrow";
 import { faqs } from "@/data/site";
 
 const tabs = [
@@ -17,9 +18,7 @@ export default function FAQ() {
   return (
     <section className="mx-auto max-w-3xl px-6 py-24 lg:px-8">
       <div className="text-center">
-        <p className="text-sm font-semibold tracking-widest text-accent uppercase">
-          FAQ
-        </p>
+        <SectionEyebrow>FAQ</SectionEyebrow>
         <h2 className="font-display mt-3 text-3xl uppercase sm:text-4xl">
           Frequently Asked Questions
         </h2>

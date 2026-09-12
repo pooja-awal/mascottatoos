@@ -45,7 +45,7 @@ export default function GalleryGrid() {
             <img
               src={unsplashUrl(item.photo, 500, heights[i % heights.length])}
               alt={`${item.category} tattoo example`}
-              className="w-full scale-100 object-cover grayscale transition-all duration-500 ease-out group-hover:scale-110 group-hover:grayscale-0"
+              className="w-full scale-100 object-cover transition-transform duration-500 ease-out group-hover:scale-110"
               loading="lazy"
             />
           </div>

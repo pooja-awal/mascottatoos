@@ -1,3 +1,4 @@
+import SectionEyebrow from "@/components/section-eyebrow";
 import { testimonials, unsplashUrl } from "@/data/site";
 
 function Stars({ count }: { count: number }) {
@@ -96,9 +97,7 @@ export default function Testimonials() {
     <section className="bg-surface/40 py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
-          <p className="text-sm font-semibold tracking-widest text-accent uppercase">
-            Testimonials
-          </p>
+          <SectionEyebrow>Testimonials</SectionEyebrow>
           <h2 className="font-display mt-3 text-3xl uppercase sm:text-4xl">
             Trusted by Ink Lovers
           </h2>

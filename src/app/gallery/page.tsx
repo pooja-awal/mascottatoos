@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import GalleryGrid from "@/components/gallery-grid";
+import SectionEyebrow from "@/components/section-eyebrow";
 
 export const metadata: Metadata = {
   title: "Gallery — Mascottatoos",
@@ -11,9 +12,7 @@ export default function GalleryPage() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
       <div className="text-center">
-        <p className="text-sm font-semibold tracking-widest text-accent uppercase">
-          Full Gallery
-        </p>
+        <SectionEyebrow>Full Gallery</SectionEyebrow>
         <h1 className="font-display mt-3 text-6xl uppercase sm:text-7xl lg:text-8xl">
           Stories on Skin
         </h1>

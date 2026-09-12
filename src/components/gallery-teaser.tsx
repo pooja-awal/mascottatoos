@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SectionEyebrow from "@/components/section-eyebrow";
 import { galleryImages, unsplashUrl } from "@/data/site";
 
 const heights = [420, 300, 360, 460, 320, 400, 340, 380];
@@ -9,9 +10,7 @@ export default function GalleryTeaser() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
       <div className="text-center">
-        <p className="text-sm font-semibold tracking-widest text-accent uppercase">
-          Gallery
-        </p>
+        <SectionEyebrow>Gallery</SectionEyebrow>
         <h2 className="font-display mt-3 text-6xl uppercase sm:text-7xl lg:text-8xl">
           Stories on Skin
         </h2>
@@ -30,7 +29,7 @@ export default function GalleryTeaser() {
             <img
               src={unsplashUrl(item.photo, 500, heights[i % heights.length])}
               alt={`${item.category} tattoo example`}
-              className="w-full scale-100 object-cover grayscale transition-all duration-500 ease-out group-hover:scale-110 group-hover:grayscale-0"
+              className="w-full scale-100 object-cover transition-transform duration-500 ease-out group-hover:scale-110"
               loading="lazy"
             />
           </div>

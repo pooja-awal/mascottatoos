@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CornerMarks from "@/components/corner-marks";
+import SectionEyebrow from "@/components/section-eyebrow";
 import { services, unsplashUrl } from "@/data/site";
 
 export default function Services() {
@@ -7,9 +8,7 @@ export default function Services() {
     <section className="bg-surface/40 py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
-          <p className="text-sm font-semibold tracking-widest text-accent uppercase">
-            Our Craft
-          </p>
+          <SectionEyebrow>Our Craft</SectionEyebrow>
           <h2 className="font-display mt-3 text-3xl uppercase sm:text-4xl">
             What We Do Best
           </h2>
@@ -31,7 +30,7 @@ export default function Services() {
                   <img
                     src={unsplashUrl(service.photo, 700, 560)}
                     alt={service.title}
-                    className="h-full w-full object-cover grayscale transition-transform duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
