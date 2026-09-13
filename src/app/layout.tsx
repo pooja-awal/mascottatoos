@@ -18,7 +18,7 @@ const anton = Anton({
 });
 
 export const metadata: Metadata = {
-  title: "Mascot Tattoos — Custom Tattoo & Piercing Studio",
+  title: "Mascot Tattoos — Custom Tattoo & Piercing Studio in Ghaziabad",
   description:
     "Mascot Tattoos is a custom tattoo and piercing studio in Raj Nagar, Ghaziabad. Custom tattoos, black & grey, minimalistic, portrait tattoos, ombre powder brows, and piercing.",
 };
