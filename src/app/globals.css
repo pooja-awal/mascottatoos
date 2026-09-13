@@ -45,6 +45,10 @@ body {
   border-radius: 0 !important;
 }
 
+.rounded-full {
+  border-radius: 9999px !important;
+}
+
 /*
  * Shared hover behavior for every button/button-styled link on the site:
  * a solid fill sweeps in from the left edge on hover instead of an instant
