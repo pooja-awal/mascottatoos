@@ -8,9 +8,9 @@ export default function WhatsappButton() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed bottom-6 left-6 z-30 flex h-12 w-12 items-center justify-center transition-transform duration-300 hover:scale-105 sm:h-14 sm:w-14"
+      className="fixed bottom-6 left-6 z-30 flex h-24 w-24 items-center justify-center transition-transform duration-300 hover:scale-105 sm:h-28 sm:w-28"
     >
-      <FaWhatsapp className="h-9 w-9 text-[#25D366] sm:h-10 sm:w-10" />
+      <FaWhatsapp className="h-[4.5rem] w-[4.5rem] text-[#25D366] sm:h-20 sm:w-20" />
     </a>
   );
 }
