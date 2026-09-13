@@ -12,7 +12,7 @@ export default function PromoBanner() {
       />
       <div className="absolute inset-0 bg-black/75" />
 
-      <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 py-24 text-center lg:px-8">
+      <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 py-16 text-center sm:py-24 lg:px-8">
         <SectionEyebrow>Free Consultation</SectionEyebrow>
         <h2 className="font-display mt-3 text-3xl uppercase text-white sm:text-5xl">
           Book a Free Consultation

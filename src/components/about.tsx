@@ -13,17 +13,17 @@ export default function About() {
             About {siteConfig.name}
           </h2>
           <p className="mt-6 max-w-md text-base leading-7 text-foreground/80 italic">
-            At {siteConfig.name}, our skilled artists bring your ideas to life
-            with precision and creativity. From detailed black-and-gray
-            designs to bold, colorful pieces, we work across all styles.
-            Whether it&apos;s a small meaningful tattoo or a full-sleeve
-            statement, we&apos;re dedicated to turning your vision into a
-            lasting work of art.
+            Established in 2012, {siteConfig.name} is home to multi-award
+            winning tattoo artists in Raj Nagar, Ghaziabad. From minimalistic
+            linework and detailed portrait tattoos to piercings and ombre
+            powder brows, we work across all styles. Whether it&apos;s a
+            small meaningful tattoo or a full-sleeve statement, we&apos;re
+            dedicated to turning your vision into a lasting work of art.
           </p>
 
           <Link
             href="/services"
-            className="btn-sweep btn-sweep-outline mt-10 inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors duration-300"
+            className="btn-sweep btn-sweep-outline mt-10 inline-flex items-center gap-2 border border-foreground bg-transparent px-6 py-3 text-sm font-semibold text-foreground transition-colors duration-300"
           >
             Read More
           </Link>
@@ -33,7 +33,7 @@ export default function About() {
           <div className="h-[380px] w-[62%] overflow-hidden border border-border sm:h-[460px] lg:h-[520px]">
             <img
               src={unsplashUrl(aboutImage, 900, 1100)}
-              alt="Inside the Mascottatoos studio"
+              alt="Inside the Mascot Tattoos studio"
               className="h-full w-full object-cover"
               loading="lazy"
             />

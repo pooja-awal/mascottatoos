@@ -6,7 +6,7 @@ export default function MarqueeBand({ reverse = false }: { reverse?: boolean }) 
   return (
     <div
       className={`absolute inset-x-0 top-1/2 w-[106%] -translate-x-[3%] -translate-y-1/2 overflow-hidden bg-accent py-4 ${
-        reverse ? "rotate-[8deg]" : "-rotate-[8deg]"
+        reverse ? "rotate-[14deg]" : "-rotate-[14deg]"
       }`}
     >
       <div

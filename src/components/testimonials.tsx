@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import SectionEyebrow from "@/components/section-eyebrow";
 import { googleRating, siteConfig, testimonials } from "@/data/site";
 
@@ -42,7 +45,7 @@ type Testimonial = (typeof testimonials)[number];
 
 function Card({ t }: { t: Testimonial }) {
   return (
-    <div className="flex h-72 w-[26rem] shrink-0 flex-col justify-between border border-border bg-surface p-8 sm:w-[28rem]">
+    <div className="flex h-72 w-full shrink-0 flex-col justify-between border border-border bg-surface p-8 sm:w-[26rem] lg:w-[28rem]">
       <div>
         <div className="flex items-start justify-between gap-4">
           <p className="text-base font-semibold text-foreground">{t.name}</p>
@@ -58,6 +61,44 @@ function Card({ t }: { t: Testimonial }) {
           {t.quote}
         </p>
       </div>
+    </div>
+  );
+}
+
+function MobileCarousel({ items }: { items: Testimonial[] }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const indexRef = useRef(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      indexRef.current = (indexRef.current + 1) % items.length;
+      const track = trackRef.current;
+      const card = cardRefs.current[indexRef.current];
+      if (!track || !card) return;
+      const target =
+        card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
+      track.scrollTo({ left: target, behavior: "smooth" });
+    }, 1500);
+    return () => clearInterval(id);
+  }, [items.length]);
+
+  return (
+    <div
+      ref={trackRef}
+      className="scrollbar-hide -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2"
+    >
+      {items.map((t, i) => (
+        <div
+          key={`${t.name}-${i}`}
+          ref={(el) => {
+            cardRefs.current[i] = el;
+          }}
+          className="w-[85%] shrink-0 snap-center"
+        >
+          <Card t={t} />
+        </div>
+      ))}
     </div>
   );
 }
@@ -119,7 +160,11 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-10">
+        <div className="mt-16 sm:hidden">
+          <MobileCarousel items={testimonials} />
+        </div>
+
+        <div className="mt-16 hidden flex-col gap-10 sm:flex">
           <Row items={rowA} direction="right" duration={rowA.length * 10} />
           <Row items={rowB} direction="left" duration={rowB.length * 10} />
         </div>
@@ -129,7 +174,7 @@ export default function Testimonials() {
             href={siteConfig.googleReview}
             target="_blank"
             rel="noreferrer"
-            className="btn-sweep btn-sweep-accent inline-flex items-center justify-center border border-accent px-8 py-3.5 text-sm font-bold tracking-widest text-foreground uppercase transition-colors duration-300"
+            className="btn-sweep btn-sweep-outline inline-flex items-center justify-center border border-foreground bg-transparent px-8 py-3.5 text-sm font-bold tracking-widest text-foreground uppercase transition-colors duration-300"
           >
             Write a Review
           </a>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Anton } from "next/font/google";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
+import WhatsappButton from "@/components/whatsapp-button";
+import BackToTopButton from "@/components/back-to-top-button";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,9 +18,9 @@ const anton = Anton({
 });
 
 export const metadata: Metadata = {
-  title: "Mascottatoos — Custom Tattoo & Piercing Studio",
+  title: "Mascot Tattoos — Custom Tattoo & Piercing Studio",
   description:
-    "Mascottatoos is a custom tattoo and piercing studio in New York City. Custom tattoos, black & grey, fine line, cover-ups, laser removal, and piercing.",
+    "Mascot Tattoos is a custom tattoo and piercing studio in Raj Nagar, Ghaziabad. Custom tattoos, black & grey, minimalistic, portrait tattoos, ombre powder brows, and piercing.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -31,6 +33,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <WhatsappButton />
+        <BackToTopButton />
       </body>
     </html>
   );

@@ -1,19 +1,37 @@
+import { useId } from "react";
 import SectionEyebrow from "@/components/section-eyebrow";
 import { artists, unsplashUrl } from "@/data/site";
 
 function InstagramIcon() {
+  const gradientId = useId();
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      className="h-4 w-4"
-      aria-hidden
-    >
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
+    <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+      <defs>
+        <radialGradient id={gradientId} cx="30%" cy="107%" r="150%">
+          <stop offset="0%" stopColor="#fdf497" />
+          <stop offset="5%" stopColor="#fdf497" />
+          <stop offset="45%" stopColor="#fd5949" />
+          <stop offset="60%" stopColor="#d6249f" />
+          <stop offset="90%" stopColor="#285AEB" />
+        </radialGradient>
+      </defs>
+      <rect
+        x="2"
+        y="2"
+        width="20"
+        height="20"
+        rx="6"
+        fill={`url(#${gradientId})`}
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="4.5"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="1.6"
+      />
+      <circle cx="17.3" cy="6.7" r="1.1" fill="#fff" />
     </svg>
   );
 }
@@ -55,8 +73,8 @@ export default function Artists() {
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-      <div className="grid gap-12 lg:grid-cols-[1fr_1fr_1fr] lg:items-start">
-        <div className="lg:sticky lg:top-24 lg:self-start">
+      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr] lg:items-start">
+        <div className="sm:col-span-2 lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
           <SectionEyebrow>Our Artists</SectionEyebrow>
           <h2 className="font-display mt-6 text-5xl uppercase sm:text-6xl">
             Meet Our Artists

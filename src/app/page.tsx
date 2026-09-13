@@ -6,8 +6,8 @@ import Artists from "@/components/artists";
 import Testimonials from "@/components/testimonials";
 import MarqueeBand from "@/components/marquee-band";
 import GalleryTeaser from "@/components/gallery-teaser";
+import BlogTeaser from "@/components/blog-teaser";
 import FAQ from "@/components/faq";
-import FinalCta from "@/components/final-cta";
 
 export default function Home() {
   return (
@@ -26,8 +26,8 @@ export default function Home() {
         <MarqueeBand reverse />
       </div>
       <GalleryTeaser />
+      <BlogTeaser />
       <FAQ />
-      <FinalCta />
     </>
   );
 }

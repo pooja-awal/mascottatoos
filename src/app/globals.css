@@ -94,7 +94,21 @@ body {
   background: color-mix(in srgb, black 12%, transparent);
 }
 
-/* Force a sweep fill permanently on (e.g. for the current/active link). */
-.btn-sweep-active::before {
-  transform: scaleX(1);
+/* Force a sweep fill permanently on (e.g. for the current/active link).
+   Only applied from the lg breakpoint up — on mobile the current-page
+   nav item looks the same as every other item. */
+@media (min-width: 1024px) {
+  .btn-sweep-active::before {
+    transform: scaleX(1);
+  }
+}
+
+/* Hide the scrollbar on horizontally-swipeable containers (e.g. the
+   mobile testimonials carousel) while keeping native scroll/snap. */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

@@ -36,11 +36,11 @@ export default function GalleryGrid() {
         ))}
       </div>
 
-      <div className="mt-10 columns-2 gap-4 sm:columns-3 lg:columns-4">
+      <div className="mt-10 columns-2 gap-1.5 sm:columns-3 lg:columns-4">
         {items.map((item, i) => (
           <div
             key={item.photo}
-            className="group mb-4 overflow-hidden border border-border break-inside-avoid"
+            className="group mb-1.5 overflow-hidden border border-border break-inside-avoid"
           >
             <img
               src={unsplashUrl(item.photo, 500, heights[i % heights.length])}

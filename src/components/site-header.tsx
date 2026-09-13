@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa6";
+import { SiGooglemaps } from "react-icons/si";
 import { aboutImage, navLinks, openingHours, siteConfig, unsplashUrl } from "@/data/site";
 
 const menuLinks = [{ label: "Home", href: "/" }, ...navLinks];
@@ -61,8 +63,8 @@ export default function SiteHeader() {
           }`}
         >
           <div className="h-[72px] shrink-0 lg:h-[76px]" aria-hidden />
-          <div className="flex flex-1 flex-col justify-center gap-14 px-6 pb-16 lg:flex-row lg:items-center lg:gap-16 lg:px-10">
-          <div className="relative mx-auto w-full max-w-sm shrink-0 pb-16 lg:mx-0">
+          <div className="flex flex-1 flex-col justify-center gap-6 px-6 pb-6 sm:gap-14 sm:pb-16 lg:flex-row lg:items-center lg:gap-16 lg:px-10">
+          <div className="relative mx-auto hidden w-full max-w-sm shrink-0 pb-16 lg:mx-0 lg:block">
             <div className="relative border border-border">
               <span className="absolute top-0 left-0 z-10 -translate-x-1/2 -translate-y-1/2 text-3xl leading-none font-light text-foreground/70">
                 +
@@ -101,7 +103,7 @@ export default function SiteHeader() {
             </div>
           </div>
 
-          <nav className="flex flex-col">
+          <nav className="flex flex-col gap-0.5 sm:gap-0">
             {menuLinks.map((link, i) => {
               const active = isActive(link.href);
               return (
@@ -110,12 +112,12 @@ export default function SiteHeader() {
                   href={link.href}
                   onClick={close}
                   aria-current={active ? "page" : undefined}
-                  className={`btn-sweep btn-sweep-outline font-display inline-flex w-fit items-start px-2 text-5xl uppercase transition-colors duration-300 sm:text-6xl lg:text-7xl ${
-                    active ? "btn-sweep-active text-background" : "text-foreground"
+                  className={`btn-sweep btn-sweep-outline font-display inline-flex w-fit items-start px-2 text-2xl font-normal uppercase transition-colors duration-300 sm:text-6xl sm:font-normal lg:text-7xl ${
+                    active ? "btn-sweep-active text-foreground lg:text-background" : "text-foreground"
                   }`}
                 >
                   {link.label}
-                  <sup className="mt-2 ml-1 text-sm tracking-wide">
+                  <sup className="mt-2 ml-1 hidden text-sm tracking-wide sm:inline">
                     {String(i + 1).padStart(2, "0")}
                   </sup>
                 </Link>
@@ -123,18 +125,18 @@ export default function SiteHeader() {
             })}
           </nav>
 
-          <div className="flex shrink-0 flex-col gap-12 lg:ml-8">
+          <div className="flex shrink-0 flex-col gap-4 sm:gap-12 lg:ml-8">
             <div>
-              <h3 className="font-display text-3xl tracking-wide uppercase sm:text-4xl">
+              <h3 className="font-display text-lg tracking-wide uppercase sm:text-4xl">
                 Contact Us
               </h3>
-              <p className="mt-6 text-xl font-semibold text-foreground/80 sm:text-2xl">
+              <p className="mt-2 text-sm font-normal text-foreground/80 sm:mt-6 sm:text-2xl sm:font-semibold">
                 Phone :{" "}
                 <a href={`tel:${siteConfig.phone}`} className="text-foreground">
                   {siteConfig.phone}
                 </a>
               </p>
-              <p className="mt-3 text-xl font-semibold text-foreground/80 sm:text-2xl">
+              <p className="mt-1 text-sm font-normal text-foreground/80 sm:mt-3 sm:text-2xl sm:font-semibold">
                 Email :{" "}
                 <a href={`mailto:${siteConfig.email}`} className="text-foreground">
                   {siteConfig.email}
@@ -143,10 +145,45 @@ export default function SiteHeader() {
             </div>
 
             <div>
-              <h3 className="font-display text-3xl tracking-wide uppercase sm:text-4xl">
+              <h3 className="font-display text-lg tracking-wide uppercase sm:text-4xl">
                 Find Us On
               </h3>
-              <ul className="mt-6 space-y-3 text-xl font-semibold sm:text-2xl">
+              <div className="mt-3 flex items-center gap-5 sm:hidden">
+                <a
+                  href={siteConfig.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram className="h-6 w-6" style={{ color: "#E4405F" }} />
+                </a>
+                <a
+                  href={siteConfig.facebook}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Facebook"
+                >
+                  <FaFacebook className="h-6 w-6" style={{ color: "#1877F2" }} />
+                </a>
+                <a
+                  href={siteConfig.googleMaps}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Google Maps"
+                >
+                  <SiGooglemaps className="h-6 w-6" style={{ color: "#4285F4" }} />
+                </a>
+                <a
+                  href={siteConfig.whatsapp}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="WhatsApp"
+                >
+                  <FaWhatsapp className="h-6 w-6" style={{ color: "#25D366" }} />
+                </a>
+              </div>
+
+              <ul className="mt-6 hidden space-y-3 text-2xl font-semibold sm:block">
                 <li>
                   <a
                     href={siteConfig.instagram}

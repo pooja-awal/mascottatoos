@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import About from "@/components/about";
 
 export const metadata: Metadata = {
-  title: "About — Mascottatoos",
+  title: "About — Mascot Tattoos",
   description:
-    "Learn about the Mascottatoos tattoo studio in New York City — our approach, standards, and the numbers behind the work.",
+    "Learn about the Mascot Tattoos tattoo studio in Raj Nagar, Ghaziabad — our approach, standards, and the numbers behind the work.",
 };
 
 export default function AboutPage() {

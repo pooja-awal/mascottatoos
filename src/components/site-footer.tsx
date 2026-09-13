@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { footerBannerImage, navLinks, siteConfig, unsplashUrl } from "@/data/site";
+import { navLinks, siteConfig } from "@/data/site";
 
 export default function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr]">
+        <div className="grid gap-12 md:grid-cols-3 lg:grid-cols-[1.2fr_1fr_1fr]">
           <div>
             <span className="font-display text-2xl tracking-wide uppercase">
               {siteConfig.name}
@@ -87,16 +87,7 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 overflow-hidden border border-border">
-          <img
-            src={unsplashUrl(footerBannerImage, 1600, 360)}
-            alt="Detail of a healed tattoo"
-            className="h-40 w-full object-cover sm:h-56"
-            loading="lazy"
-          />
-        </div>
-
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted sm:flex-row">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. All rights
             reserved.

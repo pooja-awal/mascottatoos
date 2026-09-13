@@ -281,7 +281,7 @@ export default function BookingSection() {
                 <button
                   type="submit"
                   disabled={checkingEmail}
-                  className="btn-sweep btn-sweep-invert w-full bg-foreground px-8 py-4 text-sm font-semibold tracking-wide text-background uppercase disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-2"
+                  className="btn-sweep btn-sweep-outline w-full border border-foreground bg-transparent px-8 py-4 text-sm font-semibold tracking-wide text-foreground uppercase transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-2"
                 >
                   {checkingEmail ? "Checking email…" : "Submit"}
                 </button>

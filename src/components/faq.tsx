@@ -39,10 +39,10 @@ export default function FAQ() {
               setTab(t.key);
               setOpenIndex(0);
             }}
-            className={`btn-sweep px-6 py-2 text-sm font-semibold uppercase transition-colors duration-300 ${
+            className={`px-6 py-2 text-sm font-semibold uppercase ${
               tab === t.key
-                ? "btn-sweep-invert bg-white text-background"
-                : "btn-sweep-accent border border-border text-foreground"
+                ? "border border-accent bg-accent text-accent-foreground"
+                : "border border-white bg-transparent text-foreground"
             }`}
           >
             {t.label}

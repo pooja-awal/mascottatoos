@@ -20,11 +20,11 @@ export default function GalleryTeaser() {
         </p>
       </div>
 
-      <div className="mt-14 columns-2 gap-4 sm:columns-3 lg:columns-4">
+      <div className="mt-14 columns-2 gap-1.5 sm:columns-3 lg:columns-4">
         {preview.map((item, i) => (
           <div
             key={item.photo}
-            className="group mb-4 overflow-hidden border border-border break-inside-avoid"
+            className="group mb-1.5 overflow-hidden border border-border break-inside-avoid"
           >
             <img
               src={unsplashUrl(item.photo, 500, heights[i % heights.length])}
@@ -39,7 +39,7 @@ export default function GalleryTeaser() {
       <div className="mt-10 text-center">
         <Link
           href="/gallery"
-          className="btn-sweep btn-sweep-solid inline-flex items-center justify-center bg-accent px-8 py-3.5 text-sm font-semibold text-accent-foreground"
+          className="btn-sweep btn-sweep-outline inline-flex items-center justify-center border border-foreground bg-transparent px-8 py-3.5 text-sm font-semibold text-foreground transition-colors duration-300"
         >
           View Full Gallery
         </Link>

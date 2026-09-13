@@ -1,20 +1,22 @@
-// Central content for the Mascottatoos site. Photos are free-to-use Unsplash
+// Central content for the Mascot Tattoos site. Photos are free-to-use Unsplash
 // images (Unsplash License — free for commercial use, no attribution
 // required) referenced by photo id. Swap any `photo` value for real studio
 // photography whenever it's ready; components just render this data.
 
 export const siteConfig = {
-  name: "Mascottatoos",
+  name: "Mascot Tattoos",
   tagline: "Custom Tattoo & Piercing Studio",
-  city: "New York, NY",
-  address: "123 Ink Street, New York, NY 10001",
-  phone: "+1 (917) 555-0123",
-  email: "book@mascottatoos.com",
+  city: "Raj Nagar, Ghaziabad",
+  address:
+    "Shop No- GF-4/5 D-1, RDC, Raj Nagar, Ghaziabad, Uttar Pradesh 201002",
+  phone: "+91 80480 37870",
+  email: "sarora975@gmail.com",
   instagram: "https://instagram.com",
   facebook: "https://facebook.com",
   tiktok: "https://tiktok.com",
-  googleMaps: "https://maps.google.com/?q=123+Ink+Street,+New+York,+NY+10001",
-  whatsapp: "https://wa.me/19175550123",
+  googleMaps:
+    "https://maps.google.com/?q=Shop+No-+GF-4/5+D-1,+RDC,+Raj+Nagar,+Ghaziabad,+Uttar+Pradesh+201002",
+  whatsapp: "https://wa.me/918048037870",
   // TODO: replace with the studio's real "write a review" link from its
   // Google Business Profile (Google Business Profile → Get more reviews).
   googleReview: "https://g.page/r/REPLACE_WITH_PLACE_ID/review",
@@ -25,6 +27,7 @@ export const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Artists", href: "/artists" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
@@ -69,18 +72,18 @@ export const services = [
     photo: "1570168983832-8989dae1522e",
   },
   {
-    title: "Fine Line Tattoo",
+    title: "Minimalistic Tattoo",
     desc: "Delicate, precise linework for minimalist pieces, script, and detailed micro-tattoos.",
     photo: "1542727365-19732a80dcfd",
   },
   {
-    title: "Cover-Up Tattoo",
-    desc: "Reworking old or unwanted tattoos into pieces you'll actually want to show off.",
+    title: "Portrait Tattoo",
+    desc: "Award-winning realism work that captures faces, moments, and memories in fine detail.",
     photo: "1704345911745-f2524e8b76f6",
   },
   {
-    title: "Traditional Tattoo",
-    desc: "Bold outlines, saturated color, and time-tested American traditional imagery built to hold up for decades.",
+    title: "Ombre Powder Brows",
+    desc: "Soft, gradient brow shading that looks natural from the first session and lasts for years.",
     photo: "1543244128-30d70d41e2a9",
   },
   {
@@ -92,28 +95,28 @@ export const services = [
 
 export const artists = [
   {
-    name: "Alex",
-    role: "Realism & Portraits",
+    name: "Sahil",
+    role: "Owner & Realism / Portraits",
     photo: "1513078094721-e7b6e0394a6a",
-    instagram: "@alex.ink",
+    instagram: "@sahil.ink",
   },
   {
-    name: "Marcus",
+    name: "Gary",
     role: "Black & Grey",
     photo: "1565058379802-bbe93b2f703a",
-    instagram: "@marcus.ink",
+    instagram: "@gary.ink",
   },
   {
-    name: "Liam",
+    name: "Ateesh",
     role: "Traditional",
     photo: "1564426622559-5af68da63b96",
-    instagram: "@liam.ink",
+    instagram: "@ateesh.ink",
   },
   {
-    name: "Jade",
+    name: "Nirvair",
     role: "Fine Line & Script",
     photo: "1643513456892-437e82e06f4a",
-    instagram: "@jade.ink",
+    instagram: "@nirvair.ink",
   },
 ];
 
@@ -437,13 +440,13 @@ export const faqs = [
 ];
 
 export const openingHours = [
-  { day: "Mon", hours: "Closed" },
-  { day: "Tue", hours: "12 PM – 8 PM" },
-  { day: "Wed", hours: "12 PM – 8 PM" },
-  { day: "Thu", hours: "12 PM – 8 PM" },
-  { day: "Fri", hours: "11 AM – 9 PM" },
-  { day: "Sat", hours: "11 AM – 9 PM" },
-  { day: "Sun", hours: "12 PM – 6 PM" },
+  { day: "Mon", hours: "11 AM – 9:15 PM" },
+  { day: "Tue", hours: "11 AM – 9:15 PM" },
+  { day: "Wed", hours: "11 AM – 9:15 PM" },
+  { day: "Thu", hours: "11 AM – 9:15 PM" },
+  { day: "Fri", hours: "11 AM – 9:15 PM" },
+  { day: "Sat", hours: "11 AM – 9:15 PM" },
+  { day: "Sun", hours: "11 AM – 9:15 PM" },
 ];
 
 export const galleryCategories = [
@@ -482,3 +485,77 @@ export const galleryImages = [
   { photo: "1702034802346-1837090e3b30", category: "Piercing" },
   { photo: "1602722872368-0cfc00f748ff", category: "Piercing" },
 ] as const;
+
+export const blogPosts = [
+  {
+    slug: "tattoo-aftercare-guide",
+    title: "The Complete Tattoo Aftercare Guide",
+    excerpt:
+      "What to do in the first 48 hours, how to wash and moisturize while healing, and the mistakes that cause faded or infected tattoos.",
+    photo: "1570168983832-8989dae1522e",
+    date: "2026-01-12",
+    category: "Aftercare",
+    content: [
+      "The first two weeks after getting tattooed decide how the piece heals and how it looks for the rest of your life. Keep the bandage on for the time your artist recommends, then wash gently with fragrance-free soap and lukewarm water.",
+      "Pat the area dry with a clean towel, never rub. Apply a thin layer of the aftercare ointment your artist provides two to three times a day, and switch to a fragrance-free lotion once the surface has stopped weeping.",
+      "Avoid direct sun, swimming pools, and soaking in the bathtub for at least two weeks. Loose, breathable clothing over the tattoo prevents friction and lets it breathe while it scabs and peels.",
+      "Come back and see us if you notice spreading redness, unusual swelling, or discharge that looks like pus rather than the usual clear plasma — those are signs of infection that need attention right away.",
+    ],
+  },
+  {
+    slug: "choosing-your-first-tattoo",
+    title: "How to Choose Your First Tattoo",
+    excerpt:
+      "Placement, size, and style advice for first-timers — plus why your first consultation matters more than you think.",
+    photo: "1542727365-19732a80dcfd",
+    date: "2025-11-03",
+    category: "Guide",
+    content: [
+      "Your first tattoo doesn't have to be your biggest decision — but a little planning goes a long way. Start with placement: think about visibility at work, how the area moves, and how much pain you're comfortable with.",
+      "Fine line and minimalistic designs are popular first tattoos because they're quick to sit for and heal predictably. If you want something bolder, a consultation lets your artist walk you through sizing and detail before the needle touches skin.",
+      "Bring reference images, but stay open to your artist's suggestions — they know what holds up on skin over the years better than a screenshot does.",
+    ],
+  },
+  {
+    slug: "minimalistic-vs-portrait-tattoos",
+    title: "Minimalistic vs. Portrait Tattoos: Which Style Fits You?",
+    excerpt:
+      "A look at two of our most requested styles — the delicate restraint of fine line work against the realism of portrait tattoos.",
+    photo: "1567601262588-37537a1f6cc7",
+    date: "2025-09-18",
+    category: "Styles",
+    content: [
+      "Minimalistic tattoos rely on clean, confident linework — no shading, no clutter, just the idea distilled to its simplest form. They're fast to tattoo, age gracefully, and work well on almost any part of the body.",
+      "Portrait tattoos are the opposite end of the spectrum: they demand fine shading, contrast, and hours in the chair to capture a likeness. They reward larger placements — forearms, thighs, or upper arms — where detail has room to breathe.",
+      "Neither style is 'better' — it comes down to how much detail you want to carry, and how much time you're willing to commit to a single sitting.",
+    ],
+  },
+  {
+    slug: "ombre-powder-brows-explained",
+    title: "Ombre Powder Brows, Explained",
+    excerpt:
+      "What ombre powder brows are, how long the results last, and what the healing timeline actually looks like.",
+    photo: "1585745422697-1b42b98aac14",
+    date: "2025-07-22",
+    category: "Services",
+    content: [
+      "Ombre powder brows are a form of semi-permanent makeup that shades the brow with a soft gradient — lighter at the front, denser toward the tail — instead of drawing individual hair strokes.",
+      "The result looks like brows filled in with powder makeup, which is why it suits almost every skin type, including oilier skin where microblading strokes tend to blur over time.",
+      "Expect some redness and a slightly darker shade for the first week, with the final color settling in over 3–4 weeks. Most clients need one touch-up session, and results typically last 1–3 years.",
+    ],
+  },
+  {
+    slug: "piercing-healing-timelines",
+    title: "Piercing Healing Timelines You Should Know",
+    excerpt:
+      "From ear lobes to cartilage — how long each piercing actually takes to heal, and how to avoid slowing it down.",
+    photo: "1603323226047-df6de54ddc13",
+    date: "2025-05-09",
+    category: "Aftercare",
+    content: [
+      "Not all piercings heal at the same speed. Ear lobes are usually ready for a jewelry change in 6–8 weeks, while cartilage piercings like helix or tragus can take 6 months to a year to fully settle.",
+      "Clean twice a day with a saline solution — avoid alcohol, hydrogen peroxide, or any product with fragrance, which dries out the piercing and slows healing.",
+      "Resist the urge to change jewelry early, even if it looks healed on the surface. The tissue underneath usually needs longer than the visible skin suggests.",
+    ],
+  },
+];
