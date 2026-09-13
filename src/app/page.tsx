@@ -19,7 +19,7 @@ export default function Home() {
       <Artists />
       <Testimonials />
       <div
-        className="relative my-10"
+        className="relative my-10 overflow-hidden"
         style={{ height: "clamp(6rem, 16vw, 14rem)" }}
       >
         <MarqueeBand />

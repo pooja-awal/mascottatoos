@@ -63,7 +63,7 @@ export default function SiteHeader() {
           }`}
         >
           <div className="h-[72px] shrink-0 lg:h-[76px]" aria-hidden />
-          <div className="flex flex-1 flex-col justify-center gap-6 px-6 pb-6 sm:gap-14 sm:pb-16 lg:flex-row lg:items-center lg:gap-16 lg:px-10">
+          <div className="flex flex-1 flex-col justify-start gap-6 px-6 pt-4 pb-6 sm:justify-center sm:gap-14 sm:pt-0 sm:pb-16 lg:flex-row lg:items-center lg:gap-16 lg:px-10">
           <div className="relative mx-auto hidden w-full max-w-sm shrink-0 pb-16 lg:mx-0 lg:block">
             <div className="relative border border-border">
               <span className="absolute top-0 left-0 z-10 -translate-x-1/2 -translate-y-1/2 text-3xl leading-none font-light text-foreground/70">
