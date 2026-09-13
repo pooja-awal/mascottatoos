@@ -3,7 +3,6 @@ import { Inter, Anton } from "next/font/google";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import WhatsappButton from "@/components/whatsapp-button";
-import BackToTopButton from "@/components/back-to-top-button";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,7 +33,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1">{children}</main>
         <SiteFooter />
         <WhatsappButton />
-        <BackToTopButton />
       </body>
     </html>
   );
