@@ -95,7 +95,7 @@ export default function WhatsappButton() {
     <div className="fixed bottom-7 left-7 z-[9999] flex flex-col items-start gap-2.5">
       <div
         ref={bubbleRef}
-        className="pointer-events-none rounded-2xl rounded-bl-[4px] bg-white px-[18px] py-3.5 text-base font-medium text-[#111] shadow-[0_4px_18px_rgba(0,0,0,0.13)]"
+        className="pointer-events-none rounded-full bg-white px-3 py-1.5 text-sm font-medium text-[#111] shadow-[0_4px_18px_rgba(0,0,0,0.13)]"
         style={{
           fontFamily: "'Segoe UI', sans-serif",
           whiteSpace: "nowrap",
