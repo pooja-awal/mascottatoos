@@ -20,7 +20,7 @@ export default function Home() {
       <Testimonials />
       <div
         className="relative my-10 overflow-hidden"
-        style={{ height: "clamp(6rem, 16vw, 14rem)" }}
+        style={{ height: "clamp(10rem, 28vw, 28rem)" }}
       >
         <MarqueeBand />
         <MarqueeBand reverse />
