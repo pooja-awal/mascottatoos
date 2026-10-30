@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Anton } from "next/font/google";
+import { Inter, Anton, Roboto_Mono } from "next/font/google";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import WhatsappButton from "@/components/whatsapp-button";
@@ -16,6 +16,11 @@ const anton = Anton({
   subsets: ["latin"],
 });
 
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Mascot Tattoos — Custom Tattoo & Piercing Studio in Ghaziabad",
   description:
@@ -26,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${anton.variable} h-full antialiased dark`}
+      className={`${inter.variable} ${anton.variable} ${robotoMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <SiteHeader />
