@@ -42,6 +42,7 @@ export const heroImage = "1552627019-947c3789ffb5";
 export const aboutImage = "1542744383-8c330d91f4b1";
 export const promoImage = "1601848714157-d845bb5c11ff";
 export const bookingImage = "1607281503082-f01fedd97a5b";
+export const footerImage = promoImage;
 
 // Rotating showcase card (About section) — photos auto-cycle on an interval.
 export const showcasePhotos = [

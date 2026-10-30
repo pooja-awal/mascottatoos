@@ -1,41 +1,49 @@
 import { marqueeItems } from "@/data/site";
 
 export default function MarqueeBand({ reverse = false }: { reverse?: boolean }) {
-  const items = [...marqueeItems, ...marqueeItems, ...marqueeItems];
+  // Four identical groups, each with trailing padding instead of a flex gap,
+  // so shifting by exactly one group width (25%) loops seamlessly.
+  const groups = [0, 1, 2, 3];
 
   return (
     <div
-      className={`absolute inset-x-0 top-1/2 w-[106%] -translate-x-[3%] -translate-y-1/2 overflow-hidden bg-accent py-4 ${
-        reverse ? "rotate-[14deg]" : "-rotate-[14deg]"
+      className={`absolute top-[calc(50%-32px)] left-[-2%] flex h-16 w-[104%] items-center overflow-hidden bg-accent ${
+        reverse ? "rotate-[9deg]" : "-rotate-[9deg]"
       }`}
     >
       <div
-        className={`flex w-max gap-8 ${
+        className={`flex w-max ${
           reverse
-            ? "animate-[marquee-reverse_28s_linear_infinite]"
-            : "animate-[marquee_28s_linear_infinite]"
+            ? "animate-[marquee-reverse_42s_linear_infinite]"
+            : "animate-[marquee_42s_linear_infinite]"
         }`}
       >
-        {items.map((item, i) => (
-          <span
-            key={i}
-            className="font-display flex items-center gap-8 text-sm tracking-widest text-accent-foreground uppercase sm:text-base"
+        {groups.map((g) => (
+          <div
+            key={g}
+            aria-hidden={g > 0}
+            className="flex shrink-0 items-center gap-[10px] pr-[10px]"
           >
-            {item}
-            <span aria-hidden className="text-lg">
-              ✦
-            </span>
-          </span>
+            {marqueeItems.map((item) => (
+              <span
+                key={item}
+                className="flex items-center gap-[14px] text-lg leading-[25.2px] font-semibold whitespace-nowrap text-background uppercase"
+              >
+                {item}
+                <span aria-hidden className="h-[5px] w-[5px] bg-background" />
+              </span>
+            ))}
+          </div>
         ))}
       </div>
 
       <style>{`
         @keyframes marquee {
           from { transform: translateX(0); }
-          to { transform: translateX(-33.333%); }
+          to { transform: translateX(-25%); }
         }
         @keyframes marquee-reverse {
-          from { transform: translateX(-33.333%); }
+          from { transform: translateX(-25%); }
           to { transform: translateX(0); }
         }
       `}</style>

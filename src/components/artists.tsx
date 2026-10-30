@@ -15,83 +15,60 @@ function InstagramIcon() {
           <stop offset="90%" stopColor="#285AEB" />
         </radialGradient>
       </defs>
-      <rect
-        x="2"
-        y="2"
-        width="20"
-        height="20"
-        rx="6"
-        fill={`url(#${gradientId})`}
-      />
-      <circle
-        cx="12"
-        cy="12"
-        r="4.5"
-        fill="none"
-        stroke="#fff"
-        strokeWidth="1.6"
-      />
+      <rect x="2" y="2" width="20" height="20" rx="6" fill={`url(#${gradientId})`} />
+      <circle cx="12" cy="12" r="4.5" fill="none" stroke="#fff" strokeWidth="1.6" />
       <circle cx="17.3" cy="6.7" r="1.1" fill="#fff" />
     </svg>
   );
 }
 
-function ArtistCard({ artist }: { artist: (typeof artists)[number] }) {
+export function ArtistCard({ artist }: { artist: (typeof artists)[number] }) {
   return (
-    <div className="group overflow-hidden border border-border">
-      <div className="overflow-hidden">
-        <img
-          src={unsplashUrl(artist.photo, 500, 600)}
-          alt={artist.name}
-          className="h-80 w-full object-cover transition duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
+    <div className="frame bg-card p-3">
+      <img
+        src={unsplashUrl(artist.photo, 568, 564)}
+        alt={artist.name}
+        className="h-[282px] w-full object-cover"
+        loading="lazy"
+      />
+      <div className="mt-4 flex items-center justify-between text-lg leading-[25.2px] font-semibold">
+        {artist.name}
+        <a
+          href={`https://instagram.com/${artist.instagram.replace(/^@/, "")}`}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${artist.name} on Instagram`}
+        >
+          <InstagramIcon />
+        </a>
       </div>
-      <div className="bg-background p-4 text-foreground">
-        <div className="flex items-center justify-between">
-          <h3 className="font-display text-lg uppercase">{artist.name}</h3>
-          <a
-            href={`https://instagram.com/${artist.instagram.replace(/^@/, "")}`}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`${artist.name} on Instagram`}
-          >
-            <InstagramIcon />
-          </a>
-        </div>
-        <span className="mt-2 inline-block w-fit border border-accent px-2.5 py-1 text-[11px] font-bold tracking-widest text-accent uppercase">
-          {artist.role}
-        </span>
-      </div>
+      <span className="mt-2.5 inline-block bg-foreground px-1.5 py-1 text-xs leading-[14.4px] font-semibold text-accent uppercase">
+        {artist.role}
+      </span>
     </div>
   );
 }
 
 export default function Artists() {
-  const columns: (typeof artists)[] = [[], []];
-  artists.forEach((artist, i) => columns[i % 2].push(artist));
-
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr] lg:items-start">
-        <div className="sm:col-span-2 lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
+    <section className="bg-background px-5 pt-[120px] pb-24 sm:px-[30px] lg:px-20">
+      <div className="mx-auto flex max-w-[1560px] flex-col gap-9 lg:flex-row lg:items-start lg:gap-6">
+        <div className="lg:sticky lg:top-24 lg:flex-[0.9_0_0] lg:self-start">
           <SectionEyebrow>Our Artists</SectionEyebrow>
-          <h2 className="font-display mt-6 text-5xl uppercase sm:text-6xl">
+          <h2 className="font-display mt-3 text-5xl leading-[1.2]">
             Meet Our Artists
           </h2>
-          <p className="mt-6 max-w-sm text-base leading-7 text-foreground/80 italic">
+          <p className="mt-4 max-w-[395px] text-base leading-[22.4px] italic">
             A team of skilled tattoo and piercing professionals dedicated to
             turning your ideas into exceptional body art.
           </p>
         </div>
 
-        {columns.map((column, colIndex) => (
-          <div key={colIndex} className="flex flex-col gap-10">
-            {column.map((artist) => (
-              <ArtistCard key={artist.name} artist={artist} />
-            ))}
-          </div>
-        ))}
+        <div className="grid gap-5 sm:grid-cols-2 lg:flex-1 lg:gap-6">
+          {artists.map((artist) => (
+            <ArtistCard key={artist.name} artist={artist} />
+          ))}
+        </div>
       </div>
     </section>
   );

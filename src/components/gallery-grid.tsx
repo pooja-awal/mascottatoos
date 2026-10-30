@@ -1,56 +1,66 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { galleryCategories, galleryImages, unsplashUrl } from "@/data/site";
+import { useState } from "react";
+import ScrollRevealImage from "@/components/scroll-reveal-image";
+import { galleryImages, unsplashUrl } from "@/data/site";
 
-const heights = [420, 300, 360, 460, 320, 400, 340, 380, 440, 310];
+// Per-column image heights lifted from the reference gallery page.
+const columnHeights = [
+  [260, 360, 280, 240, 360],
+  [300, 380, 260, 300, 240],
+  [320, 200, 360, 260, 360],
+  [180, 360, 300, 340, 360],
+];
+
+const PAGE_SIZE = 20;
 
 export default function GalleryGrid() {
-  const [category, setCategory] =
-    useState<(typeof galleryCategories)[number]>("All");
+  const [visible, setVisible] = useState(PAGE_SIZE);
+  const shown = galleryImages.slice(0, visible);
 
-  const items = useMemo(
-    () =>
-      category === "All"
-        ? galleryImages
-        : galleryImages.filter((i) => i.category === category),
-    [category],
-  );
+  // Deal images across the 4 columns, row by row, so every row is filled.
+  const columns: { item: (typeof galleryImages)[number]; h: number }[][] = [
+    [],
+    [],
+    [],
+    [],
+  ];
+  shown.forEach((item, i) => {
+    const col = i % 4;
+    const row = columns[col].length;
+    const heights = columnHeights[col];
+    columns[col].push({ item, h: heights[row % heights.length] });
+  });
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center gap-2">
-        {galleryCategories.map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            onClick={() => setCategory(cat)}
-            className={`btn-sweep px-5 py-2 text-sm font-semibold transition-colors duration-300 ${
-              category === cat
-                ? "btn-sweep-solid bg-accent text-accent-foreground"
-                : "btn-sweep-accent border border-border text-muted"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      <div className="mt-10 columns-2 gap-1.5 sm:columns-3 lg:columns-4">
-        {items.map((item, i) => (
-          <div
-            key={item.photo}
-            className="group mb-1.5 overflow-hidden border border-border break-inside-avoid"
-          >
-            <img
-              src={unsplashUrl(item.photo, 500, heights[i % heights.length])}
-              alt={`${item.category} tattoo example`}
-              className="w-full scale-100 object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-              loading="lazy"
-            />
+      <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
+        {columns.map((col, c) => (
+          <div key={c} className="flex flex-col gap-2.5">
+            {col.map(({ item, h }) => (
+              <ScrollRevealImage
+                key={item.photo}
+                src={unsplashUrl(item.photo, 600, h * 2)}
+                alt={`${item.category} tattoo example`}
+                className="w-full"
+                style={{ height: h }}
+              />
+            ))}
           </div>
         ))}
       </div>
+
+      {visible < galleryImages.length && (
+        <div className="mt-16 text-center">
+          <button
+            type="button"
+            onClick={() => setVisible((v) => v + PAGE_SIZE)}
+            className="btn btn-lg cursor-pointer"
+          >
+            Load More
+          </button>
+        </div>
+      )}
     </div>
   );
 }

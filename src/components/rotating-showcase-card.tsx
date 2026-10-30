@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Appear, { springs } from "@/components/appear";
+import HoverArrow from "@/components/hover-arrow";
 import CornerMarks from "@/components/corner-marks";
 import {
   showcaseAvatars,
@@ -21,14 +23,13 @@ export default function RotatingShowcaseCard() {
   }, []);
 
   return (
-    // ~3in wide overall; the photo card and the rating card are two
-    // separate boxes stacked with a gap, not one combined container.
-    <div className="w-[3in] space-y-3">
-      <div className="relative">
+    <div className="flex w-[220px] flex-col items-end gap-[26px]">
+      <Appear x={12} transition={springs.card} className="w-full">
+      <div className="relative w-full">
         <CornerMarks />
 
-        <div className="rounded-lg border border-border bg-surface p-2.5">
-          <div className="relative h-36 overflow-hidden rounded-md">
+        <div className="frame bg-card p-3">
+          <div className="relative h-[150px] overflow-hidden">
             {showcasePhotos.map((photo, i) => (
               <img
                 key={photo}
@@ -43,39 +44,40 @@ export default function RotatingShowcaseCard() {
 
           <Link
             href="/gallery"
-            className="group mt-2 flex items-center justify-between text-xs font-semibold tracking-widest text-foreground uppercase"
+            className="group mt-4 flex h-6 items-center justify-between text-sm leading-[16.8px] font-semibold uppercase"
           >
             Learn More
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
+            <HoverArrow />
           </Link>
         </div>
       </div>
+      </Appear>
 
-      <div className="flex items-center gap-3 rounded-lg bg-surface p-3">
-        <div className="flex -space-x-2.5">
-          {showcaseAvatars.map((photo) => (
+      <Appear y={40} transition={springs.soft}>
+      <div className="flex w-max items-center gap-3.5 whitespace-nowrap">
+        <div className="flex">
+          {showcaseAvatars.map((photo, i) => (
             <img
               key={photo}
               src={unsplashUrl(photo, 80, 80)}
               alt=""
-              className="h-7 w-7 rounded-full border border-surface object-cover"
+              className={`h-7 w-7 rounded-full object-cover ${i ? "-ml-1.5" : ""}`}
             />
           ))}
         </div>
 
         <div>
-          <div className="flex gap-0.5 text-sm text-accent" aria-hidden>
+          <div className="flex gap-[5px] text-[10px] leading-[10px] text-[#ffd700]" aria-hidden>
             {Array.from({ length: 5 }, (_, i) => (
               <span key={i}>★</span>
             ))}
           </div>
-          <p className="text-[10px] leading-tight font-semibold tracking-wide text-muted uppercase">
+          <p className="mt-1 text-xs leading-[14.4px] font-semibold uppercase">
             {showcaseStat.value} {showcaseStat.label}
           </p>
         </div>
       </div>
+      </Appear>
     </div>
   );
 }

@@ -5,9 +5,10 @@ import PromoBanner from "@/components/promo-banner";
 import Artists from "@/components/artists";
 import Testimonials from "@/components/testimonials";
 import MarqueeBand from "@/components/marquee-band";
+import FAQ from "@/components/faq";
 import GalleryTeaser from "@/components/gallery-teaser";
 import BlogTeaser from "@/components/blog-teaser";
-import FAQ from "@/components/faq";
+import BookingSection from "@/components/booking-section";
 
 export default function Home() {
   return (
@@ -18,16 +19,14 @@ export default function Home() {
       <PromoBanner />
       <Artists />
       <Testimonials />
-      <div
-        className="relative my-10 overflow-hidden"
-        style={{ height: "clamp(10rem, 28vw, 28rem)" }}
-      >
+      <div className="relative h-[300px] overflow-hidden">
         <MarqueeBand />
         <MarqueeBand reverse />
       </div>
+      <FAQ />
       <GalleryTeaser />
       <BlogTeaser />
-      <FAQ />
+      <BookingSection />
     </>
   );
 }

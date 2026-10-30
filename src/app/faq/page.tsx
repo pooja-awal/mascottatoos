@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BookingSection from "@/components/booking-section";
 import FAQ from "@/components/faq";
 
 export const metadata: Metadata = {
@@ -8,5 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function FAQPage() {
-  return <FAQ />;
+  return (
+    <>
+      <div className="pt-[104px]" />
+      <FAQ />
+      <BookingSection />
+    </>
+  );
 }

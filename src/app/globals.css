@@ -1,67 +1,54 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 :root {
-  /* Palette lifted from the Tattooverse Framer reference. */
+  /* Palette measured from the Tattooverse Framer reference. */
   --background: #010101;
   --foreground: #ffffff;
-  --surface: #101010;
-  --surface-2: #191919;
-  --border: #ffffff1a;
-  --border-strong: #262626;
+  --card: #ffffff0f; /* rgba(255,255,255,.06) */
+  --card-border: #ffffff14;
+  --separator: #161616;
+  --field: #101010;
+  --panel: #191919;
   --accent: #ff6f00;
-  --accent-foreground: #010101;
-  --muted: #ffffffa6;
-  --subtle: #ffffff73;
+  --muted: #ffffffcc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-separator: var(--separator);
+  --color-field: var(--field);
+  --color-panel: var(--panel);
   --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
-  --color-subtle: var(--subtle);
-  --color-border-strong: var(--border-strong);
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-roboto-mono);
   --font-display: var(--font-anton);
 }
 
+/* clip (not hidden) so position: sticky keeps working in descendants. */
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
+  /* Framer's "Inter Display" is Inter at its largest optical size. */
   font-feature-settings: "cv03", "cv04", "cv09", "cv11";
+  font-variation-settings: "opsz" 32;
   text-rendering: optimizeLegibility;
   background: var(--background);
   color: var(--foreground);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .font-display {
   font-family: var(--font-display), sans-serif;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
-
-/* Small uppercase mono label (eyebrows, meta text). */
-.font-label {
-  font-family: var(--font-mono), monospace;
   font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
-.text-outline {
-  -webkit-text-stroke: 1px var(--foreground);
-  color: transparent;
-}
-
-/* Square corners site-wide — overrides every rounded-* utility. */
+/* Square corners site-wide. */
 * {
   border-radius: 0 !important;
 }
@@ -71,65 +58,153 @@ body {
 }
 
 /*
- * Shared hover behavior for every button/button-styled link on the site:
- * a solid fill sweeps in from the left edge on hover instead of an instant
- * color change. Combine `.btn-sweep` with one fill variant below.
+ * Outline button: 1px white border, transparent fill. On hover a white fill
+ * sweeps in from the left and the label flips dark (Framer "Highlight").
  */
-.btn-sweep {
+.btn {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--foreground);
+  background: transparent;
+  color: var(--foreground);
+  font-size: 16px;
+  line-height: 22.4px;
+  text-decoration: none;
+  transition: color 0.5s cubic-bezier(0, 0, 0.58, 1);
 }
-.btn-sweep::before {
+.btn::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
+  background: var(--foreground);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s cubic-bezier(0, 0, 0.58, 1);
 }
-.btn-sweep:hover::before {
+.btn:hover {
+  color: var(--background);
+}
+.btn:hover::before {
+  transform: scaleX(1);
+}
+.btn-lg {
+  padding: 11px 15px;
+}
+.btn-sm {
+  padding: 7px 12px;
+}
+.btn-active::before {
   transform: scaleX(1);
 }
 
-/* Outline buttons (transparent bg) — fills white, text flips dark. */
-.btn-sweep-outline::before {
-  background: var(--foreground);
+/* Same sweep for the accent-filled toggles (FAQ / gallery tabs). */
+.tab {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--foreground);
+  transition: color 0.3s;
 }
-.btn-sweep-outline:hover {
+.tab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--foreground);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0, 0, 0.58, 1);
+}
+.tab:hover {
+  color: var(--background);
+}
+.tab:hover::before,
+.tab[aria-pressed="true"]::before {
+  transform: scaleX(1);
+}
+.tab[aria-pressed="true"] {
   color: var(--background);
 }
 
-/* Outline/toggle buttons that fill with the accent color on hover. */
-.btn-sweep-accent::before {
-  background: var(--accent);
+/* Borderless white sweep used by the fullscreen menu links. */
+.sweep {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--foreground);
+  transition: color 0.3s;
 }
-.btn-sweep-accent:hover {
-  color: var(--accent-foreground);
+.sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--foreground);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0, 0, 0.58, 1);
 }
-
-/* Already-solid accent buttons — a light shine sweeps across on hover. */
-.btn-sweep-solid::before {
-  background: color-mix(in srgb, white 20%, transparent);
+.sweep:hover {
+  color: var(--background);
 }
-
-/* Solid light/white buttons — a dark tint sweeps across on hover. */
-.btn-sweep-invert::before {
-  background: color-mix(in srgb, black 12%, transparent);
+.sweep:hover::before {
+  transform: scaleX(1);
 }
-
-/* Force a sweep fill permanently on (e.g. for the current/active link).
-   Only applied from the lg breakpoint up — on mobile the current-page
-   nav item looks the same as every other item. */
 @media (min-width: 1024px) {
-  .btn-sweep-active::before {
+  .sweep-active {
+    color: var(--background);
+  }
+  .sweep-active::before {
     transform: scaleX(1);
   }
 }
 
-/* Hide the scrollbar on horizontally-swipeable containers (e.g. the
-   mobile testimonials carousel) while keeping native scroll/snap. */
+/* Card border drawn inside the box — takes no layout space (Framer overlay). */
+.frame {
+  box-shadow: inset 0 0 0 1px var(--card-border);
+}
+
+/* Dark form controls. */
+.checkbox {
+  appearance: none;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background: var(--field);
+  border: 1px solid #ffffff33;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+.checkbox:checked {
+  background: var(--foreground);
+  border-color: var(--foreground);
+}
+.checkbox:checked::after {
+  content: "";
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid var(--background);
+  border-bottom: 2px solid var(--background);
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+.select-chevron {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27white%27 stroke-width=%271.5%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
 .scrollbar-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;

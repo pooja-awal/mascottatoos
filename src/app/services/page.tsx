@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import Services from "@/components/services";
+import BookingSection from "@/components/booking-section";
+import FAQ from "@/components/faq";
+import PageHero from "@/components/page-hero";
+import { ServiceGrid } from "@/components/services";
 
 export const metadata: Metadata = {
   title: "Services — Mascot Tattoos",
@@ -8,5 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  return <Services />;
+  return (
+    <>
+      <PageHero eyebrow="Our Services" title="What We Do Best">
+        <ServiceGrid />
+      </PageHero>
+      <FAQ />
+      <BookingSection />
+    </>
+  );
 }

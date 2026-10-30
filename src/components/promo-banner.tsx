@@ -1,28 +1,27 @@
 import BookAppointmentButton from "@/components/book-appointment-button";
-import SectionEyebrow from "@/components/section-eyebrow";
+import ParallaxImage from "@/components/parallax-image";
 import { promoImage, unsplashUrl } from "@/data/site";
 
 export default function PromoBanner() {
   return (
-    <section className="relative overflow-hidden">
-      <img
-        src={unsplashUrl(promoImage, 1920, 700)}
+    <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden px-5 py-24 sm:px-[30px]">
+      <ParallaxImage
+        src={unsplashUrl(promoImage, 1920, 1000)}
         alt="Close-up tattoo detail"
-        className="absolute inset-0 h-full w-full object-cover grayscale"
+        amount={60}
       />
-      <div className="absolute inset-0 bg-black/75" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(1,1,1,0.01)_12%,#010101_100%)]" />
 
-      <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 py-16 text-center sm:py-24 lg:px-8">
-        <SectionEyebrow>Free Consultation</SectionEyebrow>
-        <h2 className="font-display mt-3 text-3xl uppercase text-white sm:text-5xl">
+      <div className="relative flex max-w-[834px] flex-col items-center text-center">
+        <h2 className="font-display text-4xl leading-[1.2] uppercase sm:text-5xl">
           Book a Free Consultation
         </h2>
-        <p className="mt-5 max-w-xl text-base leading-7 text-white/70">
+        <p className="mt-3 text-lg leading-[25.2px]">
           Not sure where to start? Sit down with one of our artists to talk
           through your idea, placement, and design, no obligation, before you
           commit to anything.
         </p>
-        <BookAppointmentButton className="mt-8" />
+        <BookAppointmentButton className="mt-9" />
       </div>
     </section>
   );

@@ -1,23 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Anton, Roboto_Mono } from "next/font/google";
+import { Inter, Anton } from "next/font/google";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
+import SmoothScroll from "@/components/smooth-scroll";
 import WhatsappButton from "@/components/whatsapp-button";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  axes: ["opsz"],
 });
 
 const anton = Anton({
   variable: "--font-anton",
   weight: "400",
-  subsets: ["latin"],
-});
-
-const robotoMono = Roboto_Mono({
-  variable: "--font-roboto-mono",
   subsets: ["latin"],
 });
 
@@ -31,9 +28,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${anton.variable} ${robotoMono.variable} h-full antialiased dark`}
+      className={`${inter.variable} ${anton.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+        <SmoothScroll />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

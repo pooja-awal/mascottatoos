@@ -6,22 +6,30 @@ const CORNER_CLASSES = [
 ];
 
 /**
- * Decorative "+" crop marks for the corners of a framed photo. Place inside
- * a `relative` wrapper alongside the bordered image container. Each mark is
- * translated by half its own size so it stays centered on the exact corner
- * point regardless of font size.
+ * 16px "+" crop marks centered on the corners of a framed card. Place inside
+ * a `relative` wrapper that has the same box as the card.
  */
-export default function CornerMarks() {
+export default function CornerMarks({
+  corners = [0, 1, 2, 3],
+}: {
+  corners?: number[];
+}) {
   return (
     <>
-      {CORNER_CLASSES.map((pos) => (
-        <span
-          key={pos}
+      {corners.map((i) => (
+        <svg
+          key={i}
+          viewBox="0 0 16 16"
           aria-hidden
-          className={`pointer-events-none absolute z-10 text-3xl leading-none font-light text-foreground/70 ${pos}`}
+          className={`pointer-events-none absolute z-10 h-4 w-4 text-foreground/70 ${CORNER_CLASSES[i]}`}
         >
-          +
-        </span>
+          <path
+            d="M8 1v14M1 8h14"
+            stroke="currentColor"
+            strokeWidth="1"
+            fill="none"
+          />
+        </svg>
       ))}
     </>
   );

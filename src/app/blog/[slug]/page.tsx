@@ -41,31 +41,29 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-20 lg:px-8">
+    <article className="mx-auto max-w-3xl px-5 pt-[140px] pb-24 sm:px-[30px] lg:pt-[200px]">
       <Link
         href="/blog"
-        className="text-xs font-semibold tracking-widest text-muted uppercase hover:text-foreground"
+        className="text-xs font-semibold text-foreground/70 uppercase transition-colors hover:text-foreground"
       >
         ← Back to Blog
       </Link>
 
       <div className="mt-6">
         <SectionEyebrow>{post.category}</SectionEyebrow>
-        <h1 className="font-display mt-4 text-4xl uppercase leading-tight sm:text-5xl">
+        <h1 className="font-display mt-4 text-4xl leading-[1.2] sm:text-5xl">
           {post.title}
         </h1>
-        <p className="mt-3 text-sm tracking-wide text-muted uppercase">
+        <p className="mt-3 text-sm font-semibold text-foreground/70 uppercase">
           {formatDate(post.date)}
         </p>
       </div>
 
-      <div className="mt-8 overflow-hidden border border-border">
-        <img
-          src={unsplashUrl(post.photo, 1200, 640)}
-          alt={post.title}
-          className="h-64 w-full object-cover sm:h-96"
-        />
-      </div>
+      <img
+        src={unsplashUrl(post.photo, 1200, 640)}
+        alt={post.title}
+        className="mt-8 h-64 w-full object-cover sm:h-96"
+      />
 
       <div className="mt-10 space-y-5 text-base leading-7 text-foreground/90">
         {post.content.map((paragraph, i) => (
@@ -73,8 +71,8 @@ export default async function BlogPostPage({
         ))}
       </div>
 
-      <div className="mt-14 border-t border-border pt-10 text-center">
-        <h2 className="font-display text-2xl uppercase sm:text-3xl">
+      <div className="mt-14 border-t border-separator pt-10 text-center">
+        <h2 className="font-display text-2xl sm:text-3xl">
           Ready to book your session?
         </h2>
         <div className="mt-6 flex justify-center">
